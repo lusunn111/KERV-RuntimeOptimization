@@ -14,9 +14,22 @@ def _path(value: str) -> Path:
     return Path(value).expanduser().resolve()
 
 
+def _runtime_root(root: Path) -> Path:
+    preferred = root / "KERV-RuntimeOptimization"
+    legacy = root / "runtime_opt"
+    if preferred.is_dir():
+        return preferred
+    if legacy.is_dir():
+        return legacy
+    raise SystemExit(
+        "KERV runtime package not found. Expected "
+        f"{preferred} or {legacy}."
+    )
+
+
 def main() -> None:
     root = Path(__file__).resolve().parent
-    runtime_root = root / "KERV-RuntimeOptimization"
+    runtime_root = _runtime_root(root)
     parser = argparse.ArgumentParser(description="Run KERV on LIBERO through FlagScale")
     parser.add_argument(
         "--flagscale-root",
@@ -61,8 +74,6 @@ def main() -> None:
 
     if not flagscale_run.is_file():
         raise SystemExit(f"FlagScale launcher not found: {flagscale_run}")
-    if not runtime_root.is_dir():
-        raise SystemExit(f"KERV runtime package not found: {runtime_root}")
     if not args.dry_run:
         missing = [
             path
