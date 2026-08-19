@@ -1,7 +1,7 @@
 <h1 align="center">🤖 KERV: Kinematic-Rectified Speculative Decoding for Embodied VLA Models</h1>
 
 <p align="center">
-  Zihao Zheng · Zhihao Mao · Maoliang Li · Jiayu Chen · Xinhao Sun ·<br>
+  Zihao Zheng · <a href="https://github.com/lusunn111">Zhihao Mao</a> · Maoliang Li · Jiayu Chen · Xinhao Sun ·<br>
   Zhaobo Zhang · Donggang Cao · Hong Mei · Xiang Chen
 </p>
 
